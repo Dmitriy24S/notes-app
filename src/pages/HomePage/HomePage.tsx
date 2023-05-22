@@ -17,10 +17,12 @@ const HomePage = () => {
       <Helmet>
         <title>Notes App</title>
       </Helmet>
-      <Box p={16} minHeight={'100vh'}>
+      <Box p={4} minHeight={'100vh'}>
         <Header />
         <Grid
-          templateColumns='repeat(auto-fit, minmax(300px, 1fr))'
+          // templateColumns='repeat(auto-fit, minmax(200px, 1fr))' // expands width
+          templateColumns='repeat(auto-fill, minmax(200px, 1fr))' // contains width
+          // templateColumns='repeat(3, minmax(200px, 1fr))'
           alignContent={'center'}
           gap={6}
         >

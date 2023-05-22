@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import PreviewDropdown from '../Dropdown/PreviewDropdown'
+import Dropdown from '../Dropdown/Dropdown'
 import Heading from './Heading'
 
 interface Props {
@@ -26,11 +26,7 @@ const NoteHeader = ({ title, id, isEditMode, toggleEditMode, fullNotePage }: Pro
         fullNotePage={fullNotePage}
       />
       {!fullNotePage && (
-        <PreviewDropdown
-          id={id}
-          isEditMode={isEditMode}
-          toggleEditMode={toggleEditMode}
-        />
+        <Dropdown id={id} isEditMode={isEditMode} toggleEditMode={toggleEditMode} />
       )}
     </Box>
   )

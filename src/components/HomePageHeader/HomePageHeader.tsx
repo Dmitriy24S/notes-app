@@ -1,6 +1,7 @@
 import { Box, Heading } from '@chakra-ui/react'
 import AddNoteButton from '../AddNoteButton/AddNoteButton'
 import NewNoteModal from '../NewNoteModal/NewNoteModal'
+import ThemeToggle from '../ThemeToggle/ThemeToggle'
 
 const Header = () => {
   return (
@@ -13,8 +14,8 @@ const Header = () => {
     >
       <Box display={'flex'} alignItems={'center'} gap={'0.5rem'}>
         <Heading as={'h1'}>Notes</Heading>
+        <ThemeToggle />
       </Box>
-
       <AddNoteButton />
       <NewNoteModal />
     </Box>

@@ -2,6 +2,7 @@ import { Box, Button, Heading, Link } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import { removeNote } from '../../store/notesSlice/notesSlice'
+import ThemeToggle from '../ThemeToggle/ThemeToggle'
 
 interface Props {
   id: string
@@ -32,6 +33,7 @@ const Header = ({ id }: Props) => {
         >
           <Heading size='xl'>Notes</Heading>
         </Link>
+        <ThemeToggle />
       </Box>
 
       <Button

@@ -53,23 +53,32 @@ const NewNoteModal = () => {
             <Box display={'flex'} flexDirection={'column'} gap={'1rem'}>
               <Input
                 placeholder='New Note'
-                color={'white'}
-                backgroundColor={'#272727'}
                 name='title'
                 border={'none'}
                 autoFocus
                 _focusVisible={{
                   border: 'transparent',
                 }}
+                _dark={{
+                  backgroundColor: '#272727',
+                }}
+                _light={{
+                  backgroundColor: '#ededed',
+                }}
               />
               <Textarea
                 placeholder='Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias natus ea saepe architecto ipsa voluptas excepturi rerum optio repellat quo.'
                 title='description'
-                backgroundColor={'#272727'}
                 minHeight={'200px'}
                 border={'none'}
                 _focusVisible={{
                   border: 'transparent',
+                }}
+                _dark={{
+                  backgroundColor: '#272727',
+                }}
+                _light={{
+                  backgroundColor: '#ededed',
                 }}
               />
             </Box>
@@ -79,19 +88,7 @@ const NewNoteModal = () => {
             <Button mr={3} onClick={() => dispatch(toggleCreateNoteForm())}>
               Cancel
             </Button>
-            <Button
-              type='submit'
-              bgColor={'gray.100'}
-              color={'gray.900'}
-              transition={'all 0.3s ease'}
-              _hover={{
-                bgColor: 'gray.50',
-              }}
-              _focusVisible={{
-                bgColor: 'gray.50',
-                outline: '2px solid white',
-              }}
-            >
+            <Button type='submit' transition={'all 0.3s ease'}>
               Add Note
             </Button>
           </ModalFooter>

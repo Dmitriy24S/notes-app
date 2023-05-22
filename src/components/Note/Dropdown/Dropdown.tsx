@@ -1,4 +1,4 @@
-import DropdownToggleButton from './DropdownToggleButton'
+import DropdownToggleContainer from './DropdownToggleContainer'
 import ExitEditModeButton from './ExitEditModeButton'
 
 interface Props {
@@ -7,12 +7,12 @@ interface Props {
   id: string
 }
 
-const PreviewDropdown = ({ isEditMode, toggleEditMode, id }: Props) => {
+const Dropdown = ({ isEditMode, toggleEditMode, id }: Props) => {
   return isEditMode ? (
     <ExitEditModeButton toggleEditMode={toggleEditMode} />
   ) : (
-    <DropdownToggleButton id={id} toggleEditMode={toggleEditMode} />
+    <DropdownToggleContainer id={id} toggleEditMode={toggleEditMode} />
   )
 }
 
-export default PreviewDropdown
+export default Dropdown

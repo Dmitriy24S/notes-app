@@ -15,15 +15,17 @@ const NoteDropdown = ({ handleClick, id }: Props) => {
   const dispatch = useDispatch()
 
   return (
-    <MenuList borderRadius={'5px'} overflow={'hidden'} p={0} border={'none'}>
+    <MenuList
+      borderRadius={'5px'}
+      overflow={'hidden'}
+      p={0}
+      border={'none'}
+      color={'initial'}
+    >
       <MenuItem
         icon={<AiFillEdit />}
         padding={'0.8rem'}
-        backgroundColor={'rgba(0, 0, 0, 0.663)'}
         transition={'all 0.1s ease'}
-        _hover={{ bg: 'rgba(35, 35, 35, 0.663)' }}
-        _focusVisible={{ bg: 'rgba(35, 35, 35, 0.663)' }}
-        // onClick={() => setIsEditMode(!isEditMode)}
         onClick={handleClick}
       >
         Edit
@@ -31,10 +33,9 @@ const NoteDropdown = ({ handleClick, id }: Props) => {
       <MenuItem
         icon={<MdDeleteOutline />}
         padding={'0.8rem'}
-        backgroundColor={'rgba(0, 0, 0, 0.663)'}
         transition={'all 0.1s ease'}
-        _hover={{ bg: 'rgb(183, 3, 3)' }}
-        _focusVisible={{ bg: 'rgb(183, 3, 3)' }}
+        _hover={{ bg: 'rgb(183, 3, 3)', color: 'white' }}
+        _focusVisible={{ bg: 'rgb(183, 3, 3)', color: 'white' }}
         onClick={() => {
           if (window.confirm('Are you sure you want to delete this note?')) {
             dispatch(removeNote(id))

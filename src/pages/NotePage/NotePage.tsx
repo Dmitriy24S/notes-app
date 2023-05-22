@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import Note from '../../components/Note/Note'
-import Header from '../../components/NotePageHeader'
+import Header from '../../components/NotePageHeader/NotePageHeader'
 import { selectNote } from '../../store/notesSlice/notesSlice'
 import { RootState } from '../../store/store'
 
@@ -31,7 +31,7 @@ const NotePage = () => {
       <Helmet>
         <title>{`${note.title} - Notes App`}</title>
       </Helmet>
-      <Box p={16}>
+      <Box p={4}>
         <Header id={note.id} />
         <Note id={note.id} title={note.title} content={note.content} fullNotePage />
       </Box>

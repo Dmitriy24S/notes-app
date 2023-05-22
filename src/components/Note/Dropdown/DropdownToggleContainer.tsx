@@ -7,8 +7,8 @@ interface Props {
   id: string
 }
 
-const DropdownToggleButton = ({ id, toggleEditMode }: Props) => {
-  console.count('DropdownToggleButton render')
+const DropdownToggleContainer = ({ id, toggleEditMode }: Props) => {
+  console.count('DropdownToggleContainer render')
 
   return (
     <Menu isLazy={true} placement='bottom-end' autoSelect={false}>
@@ -24,11 +24,14 @@ const DropdownToggleButton = ({ id, toggleEditMode }: Props) => {
         transition={'all 0.3s ease'}
         outlineColor={'transparent'}
         bgColor={'transparent'}
+        _hover={{ bgColor: 'whiteAlpha.300' }}
         _focusVisible={{ outlineColor: 'white', bgColor: 'whiteAlpha.300' }}
+        _active={{ bgColor: 'whiteAlpha.300' }}
+        size={'sm'}
       />
       <NoteDropdown handleClick={toggleEditMode} id={id} />
     </Menu>
   )
 }
 
-export default DropdownToggleButton
+export default DropdownToggleContainer

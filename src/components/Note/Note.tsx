@@ -19,7 +19,7 @@ const Note = ({ title, content, id, fullNotePage = false }: Props) => {
   }
 
   return (
-    <Box bg='#ef5236' p={6} color='white' borderRadius={5}>
+    <Box bg='#ef5236' p={6} color='white' borderRadius={5} boxShadow={'xl'}>
       <NoteHeader
         id={id}
         title={title}
