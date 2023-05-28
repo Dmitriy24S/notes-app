@@ -60,7 +60,10 @@ const NewNoteModal = () => {
                   border: 'transparent',
                 }}
                 _dark={{
-                  backgroundColor: '#272727',
+                  backgroundColor: '#27272778',
+                  _placeholder: {
+                    color: '#bababa',
+                  },
                 }}
                 _light={{
                   backgroundColor: '#ededed',
@@ -75,7 +78,11 @@ const NewNoteModal = () => {
                   border: 'transparent',
                 }}
                 _dark={{
-                  backgroundColor: '#272727',
+                  // backgroundColor: '#272727',
+                  backgroundColor: 'rgba(39, 39, 39, 0.471)',
+                  _placeholder: {
+                    color: '#bababa',
+                  },
                 }}
                 _light={{
                   backgroundColor: '#ededed',
