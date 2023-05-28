@@ -1,6 +1,7 @@
 import { Box, Grid, GridItem } from '@chakra-ui/react'
 import { Helmet } from 'react-helmet-async'
 import { shallowEqual, useSelector } from 'react-redux'
+import FilterInput from '../../components/FilterNotes/FilterInput'
 import Header from '../../components/HomePageHeader/HomePageHeader'
 import Note from '../../components/Note/Note'
 import { RootState } from '../../store/store'
@@ -8,9 +9,13 @@ import { RootState } from '../../store/store'
 const HomePage = () => {
   console.count('HomePage render')
 
-  const notes = useSelector((state: RootState) => state.notes.notes, shallowEqual)
+  // const notes = useSelector((state: RootState) => state.notes.notes, shallowEqual)
+  const filteredNotes = useSelector(
+    (state: RootState) => state.notes.filteredNotes,
+    shallowEqual
+  )
 
-  console.log('homePage filteredNotes', notes)
+  console.log('homePage filteredNotes', filteredNotes)
 
   return (
     <>
@@ -19,6 +24,7 @@ const HomePage = () => {
       </Helmet>
       <Box p={4} minHeight={'100vh'}>
         <Header />
+        <FilterInput />
         <Grid
           // templateColumns='repeat(auto-fit, minmax(200px, 1fr))' // expands width
           templateColumns='repeat(auto-fill, minmax(200px, 1fr))' // contains width
@@ -26,7 +32,7 @@ const HomePage = () => {
           alignContent={'center'}
           gap={6}
         >
-          {notes.map((note) => (
+          {filteredNotes.map((note) => (
             <GridItem key={note.id} w='100%'>
               {/* <Note note={note} /> */}
               {/* <Note title={note.title} body={note.content} id={note.id} /> */}
