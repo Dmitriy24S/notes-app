@@ -43,7 +43,7 @@ const Note = ({ title, content, id, fullNotePage = false, tags = [] }: Props) =>
         isEditMode={isEditMode}
         fullNotePage={fullNotePage}
       />
-      <NoteFooter id={id} tags={tags} />
+      <NoteFooter tags={tags} />
     </Box>
   )
 }
