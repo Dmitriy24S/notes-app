@@ -7,6 +7,7 @@ import { RootState } from '../../store/store'
 
 const FilterInput = () => {
   const notes = useSelector((state: RootState) => state.notes.notes, shallowEqual)
+  // const notes = useSelector((state: RootState) => state.notes, shallowEqual)
   const selectedTags = useSelector(
     (state: RootState) => state.notes.selectedTags,
     shallowEqual

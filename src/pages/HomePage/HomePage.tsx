@@ -9,13 +9,9 @@ import { RootState } from '../../store/store'
 const HomePage = () => {
   console.count('HomePage render')
 
-  // const notes = useSelector((state: RootState) => state.notes.notes, shallowEqual)
-  const filteredNotes = useSelector(
-    (state: RootState) => state.notes.filteredNotes,
-    shallowEqual
-  )
+  const notes = useSelector((state: RootState) => state.notes.notes, shallowEqual)
 
-  console.log('homePage filteredNotes', filteredNotes)
+  console.log('homePage filteredNotes', notes)
 
   return (
     <>
@@ -32,7 +28,8 @@ const HomePage = () => {
           alignContent={'center'}
           gap={6}
         >
-          {filteredNotes.map((note) => (
+          {/* {notes.map((note) => ( */}
+          {notes?.map((note) => (
             <GridItem key={note.id} w='100%'>
               {/* <Note note={note} /> */}
               {/* <Note title={note.title} body={note.content} id={note.id} /> */}
