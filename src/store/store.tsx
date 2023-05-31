@@ -17,7 +17,12 @@ import notesReducer from './notesSlice/notesSlice'
 //   },
 // })
 
-const persistConfig = { key: 'root', storage, version: 1 }
+const persistConfig = {
+  key: 'root',
+  storage,
+  version: 1,
+  whitelist: ['notes', 'filteredNotes'],
+}
 const persistedReducder = persistReducer(persistConfig, notesReducer)
 export const store = configureStore({
   reducer: {
