@@ -25,6 +25,8 @@ const Note = ({ title, content, id, fullNotePage = false, tags = [] }: Props) =>
       borderRadius={5}
       boxShadow={'xl'}
       height={'100%'}
+      display={'flex'}
+      flexDirection={'column'}
     >
       <NoteHeader
         id={id}

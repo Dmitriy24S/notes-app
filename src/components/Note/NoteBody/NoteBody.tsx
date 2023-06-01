@@ -18,7 +18,9 @@ const NoteBody = ({ id, content, isEditMode, fullNotePage }: Props) => {
   return isEditMode ? (
     <EditableBody id={id} content={content} />
   ) : (
-    <Text minHeight={'200px'}>{content}</Text>
+    <Text height={'200px'} overflowY={'auto'}>
+      {content}
+    </Text>
   )
 }
 

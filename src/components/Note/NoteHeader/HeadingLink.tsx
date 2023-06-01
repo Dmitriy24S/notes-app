@@ -16,8 +16,10 @@ const HeadingLink = ({ id, title }: Props) => (
     _hover={{
       textDecoration: 'none',
     }}
+    isTruncated
+    title={title}
   >
-    <Heading my={0} fontSize={'3xl'}>
+    <Heading my={0} fontSize={'3xl'} isTruncated>
       {title}
     </Heading>
   </Link>
