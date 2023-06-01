@@ -12,13 +12,7 @@ interface Props {
 
 const NoteHeader = ({ title, id, isEditMode, toggleEditMode, fullNotePage }: Props) => {
   return (
-    <Box
-      display={'flex'}
-      justifyContent={'space-between'}
-      alignItems={'center'}
-      mb={6}
-      gap={4}
-    >
+    <Box display={'flex'} justifyContent={'space-between'} mb={6} gap={4}>
       <Heading
         id={id}
         title={title}

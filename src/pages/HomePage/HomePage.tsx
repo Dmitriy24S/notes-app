@@ -14,8 +14,6 @@ const HomePage = () => {
     shallowEqual
   )
 
-  console.log('homePage filteredNotes', filteredNotes)
-
   return (
     <>
       <Helmet>

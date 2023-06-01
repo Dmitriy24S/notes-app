@@ -1,17 +1,13 @@
 import { Box } from '@chakra-ui/react'
 import { useState } from 'react'
+import { NoteType } from '../../store/notesSlice/notesSlice'
 import NoteBody from './NoteBody/NoteBody'
 import NoteFooter from './NoteFooter/NoteFooter'
 import NoteHeader from './NoteHeader/NoteHeader'
 
-interface Props {
-  title: string
-  content: string
-  id: string
+interface Props extends NoteType {
   fullNotePage?: boolean
-  tags?: string[]
 }
-// TODO: Type Note?
 
 const Note = ({ title, content, id, fullNotePage = false, tags = [] }: Props) => {
   console.count('Note render')

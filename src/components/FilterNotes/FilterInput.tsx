@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import Select from 'react-select'
-import { filterNotesByTag, selectTag } from '../../store/notesSlice/notesSlice'
+import { TagType, filterNotesByTag, selectTag } from '../../store/notesSlice/notesSlice'
 import { RootState } from '../../store/store'
 
 const FilterInput = () => {
@@ -12,12 +12,7 @@ const FilterInput = () => {
     (state: RootState) => state.notes.selectedTags,
     shallowEqual
   )
-  const [allTags, setAllTags] = useState<
-    {
-      value: string
-      label: string
-    }[]
-  >([])
+  const [allTags, setAllTags] = useState<TagType[]>([])
   const isFilterOpen = useSelector((state: RootState) => state.notes.isFilterOpen)
   const dispatch = useDispatch()
 
@@ -29,9 +24,9 @@ const FilterInput = () => {
       notes.forEach((note) => {
         if (note.tags && note.tags.length > 0) {
           note.tags.map((tag) => {
-            if (!uniqueTags.includes(tag)) {
-              uniqueTags.push(tag)
-              updatedAllTags.push({ value: tag, label: tag })
+            if (!uniqueTags.includes(tag.label)) {
+              uniqueTags.push(tag.label)
+              updatedAllTags.push(tag)
             }
           })
         }
@@ -40,7 +35,6 @@ const FilterInput = () => {
     }
 
     getTags()
-    console.log('allTags', allTags)
   }, [dispatch, notes])
 
   // Update Filtered Notes in accordance with currently selected tags state when original notes state changes (i.e. Home Page notes not updated with new added note)
@@ -55,14 +49,15 @@ const FilterInput = () => {
   return (
     <Box mb={'1.4rem'} color={'black'} outline={'none'}>
       <Select
-        onChange={(e) => {
-          // console.log('Select change event', e)
+        value={selectedTags}
+        onChange={(event) => {
+          console.log('Select change event', event)
           // [{…}]
           // 0:
           // label: "Note 1"
           // value: "Note 1"
-          const values = e.map((item) => item.label.toLowerCase())
-          dispatch(selectTag(values))
+          // const values = e.map((item) => item.label.toLowerCase())
+          dispatch(selectTag(event as TagType[]))
         }}
         isMulti
         name='colors'

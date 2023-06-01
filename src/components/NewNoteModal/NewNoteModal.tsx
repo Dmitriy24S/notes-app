@@ -14,7 +14,7 @@ import {
 import { useEffect, useState } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import Creatable from 'react-select/creatable'
-import { addNote, toggleCreateNoteForm } from '../../store/notesSlice/notesSlice'
+import { TagType, addNote, toggleCreateNoteForm } from '../../store/notesSlice/notesSlice'
 import { RootState } from '../../store/store'
 
 const NewNoteModal = () => {
@@ -33,12 +33,12 @@ const NewNoteModal = () => {
   const notes = useSelector((state: RootState) => state.notes.notes, shallowEqual)
 
   useEffect(() => {
-    const updatedAllTags: { value: string; label: string }[] = []
+    const updatedAllTags: TagType[] = []
     const getTags = () => {
       notes.forEach((note) => {
         if (note.tags && note.tags.length > 0) {
           const noteTags = note.tags.map((tag) => {
-            return { value: tag, label: tag }
+            return tag
           })
           // allTags.push(...noteTags)
           // setAllTags((prev) => [...prev, ...noteTags])
@@ -50,12 +50,11 @@ const NewNoteModal = () => {
     }
 
     getTags()
-    console.log('allTags', allTags)
     // dispatch(filterNotesByTag(selectedTags))
     // }, [dispatch, selectedTags, notes])
   }, [notes])
 
-  const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [selectedTags, setSelectedTags] = useState<TagType[]>([])
 
   return (
     <Modal
@@ -129,11 +128,9 @@ const NewNoteModal = () => {
             {/* Tags */}
             <Box mt={'4'} color={'black'} outline={'none'}>
               <Creatable
-                onChange={(e) => {
-                  console.log('Select change event', e)
-                  const values = e.map((item) => item.label.toLowerCase())
-                  console.log('values', values)
-                  setSelectedTags(values)
+                onChange={(event) => {
+                  console.log('Select change event', event)
+                  setSelectedTags(event as TagType[])
                 }}
                 isMulti
                 name='tags'

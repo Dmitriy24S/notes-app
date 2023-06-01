@@ -33,7 +33,13 @@ const NotePage = () => {
       </Helmet>
       <Box p={4}>
         <Header id={note.id} />
-        <Note id={note.id} title={note.title} content={note.content} fullNotePage />
+        <Note
+          id={note.id}
+          title={note.title}
+          content={note.content}
+          tags={note.tags}
+          fullNotePage
+        />
       </Box>
     </>
   )

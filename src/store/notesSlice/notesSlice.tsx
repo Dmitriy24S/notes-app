@@ -1,28 +1,45 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
-export type Note = { id: string; title: string; content: string; tags: string[] }
+export type NoteType = { id: string; title: string; content: string; tags: TagType[] }
 
-export type Tag = {
+export type TagType = {
   value: string
   label: string
 }
 
 export interface NotesState {
-  notes: Note[]
-  filteredNotes: Note[]
+  notes: NoteType[]
+  filteredNotes: NoteType[]
   isCreateNoteFormOpen: boolean
-  selectedNote: Note | null
+  selectedNote: NoteType | null
   isFilterOpen: boolean
-  selectedTags: string[]
+  // selectedTags: string[]
+  selectedTags: TagType[]
 }
 
 const initialState: NotesState = {
   notes: [
-    { id: 'note-1', title: 'Note 1', content: 'Content 1', tags: ['tag1', 'tag2'] },
+    {
+      id: 'note-1',
+      title: 'Note 1',
+      content: 'Content 1',
+      tags: [
+        { label: 'tag1', value: 'tag1' },
+        { label: 'tag2', value: 'tag2' },
+      ],
+    },
   ],
   filteredNotes: [
-    { id: 'note-1', title: 'Note 1', content: 'Content 1', tags: ['tag1', 'tag2'] },
+    {
+      id: 'note-1',
+      title: 'Note 1',
+      content: 'Content 1',
+      tags: [
+        { label: 'tag1', value: 'tag1' },
+        { label: 'tag2', value: 'tag2' },
+      ],
+    },
   ],
   isCreateNoteFormOpen: false,
   selectedNote: null,
@@ -36,7 +53,7 @@ export const notesSlice = createSlice({
   reducers: {
     addNote: (
       state,
-      action: PayloadAction<Omit<Note, 'id'>>
+      action: PayloadAction<Omit<NoteType, 'id'>>
       // action: PayloadAction<Partial<Note>>
     ) => {
       // console.log('action', action, 'action.payload', action.payload)
@@ -50,7 +67,10 @@ export const notesSlice = createSlice({
         id: crypto.randomUUID(),
         title: action.payload.title || 'No Title',
         content: action.payload.content || 'No Description',
-        tags: action.payload.tags.length > 0 ? action.payload.tags : ['no tags'],
+        tags:
+          action.payload.tags.length > 0
+            ? action.payload.tags
+            : [{ label: 'no tags', value: 'no tags' }],
         // tags: action.payload.tags[0].length > 0 ? action.payload.tags : ['no tags'],
         // tags: action.payload.tags || [],
       }
@@ -60,7 +80,7 @@ export const notesSlice = createSlice({
       state.notes = state.notes.filter((note) => note.id !== action.payload)
       state.selectedNote = null // without this: after remove note -> open another one -> show deleted note info?
     },
-    updateNote: (state, action: PayloadAction<Partial<Note>>) => {
+    updateNote: (state, action: PayloadAction<Partial<NoteType>>) => {
       const noteIndex = state.notes.findIndex((note) => note.id === action.payload.id)
 
       if (noteIndex !== -1) {
@@ -88,7 +108,7 @@ export const notesSlice = createSlice({
     toggleFilter: (state) => {
       state.isFilterOpen = !state.isFilterOpen
     },
-    selectTag: (state, action: PayloadAction<string[]>) => {
+    selectTag: (state, action: PayloadAction<TagType[]>) => {
       // const selectedTag = action.payload.toLowerCase()
       // if (!state.selectedTags.includes(selectedTag)) {
       //   state.selectedTags.push(selectedTag)
@@ -97,8 +117,8 @@ export const notesSlice = createSlice({
       // }
       state.selectedTags = action.payload
     },
-    filterNotesByTag: (state, action: PayloadAction<string[]>) => {
-      const selectedTags = action.payload.map((tag) => tag.toLowerCase())
+    filterNotesByTag: (state, action: PayloadAction<TagType[]>) => {
+      const selectedTags = action.payload.map((tag) => tag.label.toLowerCase())
 
       if (selectedTags.length === 0) {
         state.filteredNotes = state.notes
@@ -106,7 +126,7 @@ export const notesSlice = createSlice({
       }
 
       state.filteredNotes = state.notes.filter((note) => {
-        const noteTags = note.tags.map((tag) => tag.toLowerCase())
+        const noteTags = note.tags.map((tag) => tag.label.toLowerCase())
         return noteTags.some((noteTag) => selectedTags.includes(noteTag))
       })
     },

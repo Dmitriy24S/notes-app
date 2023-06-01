@@ -1,4 +1,5 @@
 import { IconButton, Tooltip } from '@chakra-ui/react'
+import { useEffect } from 'react'
 import { AiOutlineTag } from 'react-icons/ai'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { toggleFilter } from '../../store/notesSlice/notesSlice'
@@ -10,6 +11,13 @@ const FilterTogglebutton = () => {
     (state: RootState) => state.notes.selectedTags,
     shallowEqual
   )
+  const isFilterOpen = useSelector((state: RootState) => state.notes.isFilterOpen)
+
+  useEffect(() => {
+    if (!isFilterOpen && selectedTags.length > 0) {
+      dispatch(toggleFilter())
+    }
+  }, [dispatch, selectedTags, isFilterOpen])
 
   return (
     <Tooltip label='Filter by tags' fontSize='sm'>
