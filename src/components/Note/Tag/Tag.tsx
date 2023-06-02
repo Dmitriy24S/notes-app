@@ -7,16 +7,16 @@ import { RootState } from '../../../store/store'
 interface Props {
   tagText: string
   handleClick: (tag: TagType) => void
-  uniqueTags: string[]
 }
 
-const Tag = ({ tagText, handleClick, uniqueTags }: Props) => {
+const Tag = ({ tagText, handleClick }: Props) => {
   const dispatch = useDispatch()
   const notes = useSelector((state: RootState) => state.notes.notes, shallowEqual)
   const selectedTags = useSelector(
     (state: RootState) => state.notes.selectedTags,
     shallowEqual
   )
+  const selectedTagsValues = selectedTags.map((tag) => tag.value)
 
   useEffect(() => {
     dispatch(filterNotesByTag(selectedTags))
@@ -30,12 +30,12 @@ const Tag = ({ tagText, handleClick, uniqueTags }: Props) => {
         color: 'gray.200',
       }}
       backgroundColor={
-        uniqueTags.includes(tagText)
+        selectedTagsValues.includes(tagText)
           ? 'rgba(226, 232, 240, 0.3)'
           : 'rgba(226, 232, 240, 0.16)'
       }
       outline={
-        uniqueTags.includes(tagText)
+        selectedTagsValues.includes(tagText)
           ? '2px solid rgba(226, 232, 240, 0.3)'
           : '2px solid transparent'
       }
